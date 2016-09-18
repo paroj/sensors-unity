@@ -24,5 +24,5 @@ setup(
       url = "http://www.rojtberg.net/",
       license = "GNU GPL v3",
       data_files = [("share/applications/", ["sensors-unity.desktop"]),
-                    (DEST, ["window.ui", "sensors-gui.py"])
-                    (DEST+"/sensors/", ["sensors.py"])])
+                    (DEST, ["window.ui", "sensors-gui.py"]),
+                    (DEST+"/sensors/", ["sensors/sensors.py"])])

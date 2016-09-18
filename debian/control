@@ -9,8 +9,6 @@ Homepage: http://www.rojtberg.net/
 
 Package: sensors-unity
 Architecture: all
-Depends: ${python3:Depends}, ${misc:Depends}, python3, gir1.2-unity-5.0, gir1.2-gtk-3.0, gir1.2-notify-0.7, gir1.2-gdkpixbuf-2.0, pulseaudio-utils, sound-theme-freedesktop
-Description: Simple egg timer application for the Unity Desktop
- A simple egg-timer type application to time your teas. 
- Rings an alarm and displays an desktop notification, when the tea is ready. 
- Supports saving several pre-set timers.
+Depends: ${python3:Depends}, ${misc:Depends}, python3, gir1.2-unity-5.0, gir1.2-gtk-3.0, gir1.2-gdkpixbuf-2.0, libsensors4
+Description: A simple sensors GUI for the Unity Desktop
+ Allows monitoring the output of the `sensors` command graphically.
