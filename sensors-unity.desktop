@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Sensor Monitor
+GenericName=Sensor Monitor
+Keywords=temperature;fan;
+Exec=/usr/share/sensors-unity/sensors-gui.py
+Path=/usr/share/sensors-unity/
+Icon=utilities-system-monitor
+Terminal=false
+Categories=Utility;GTK;
