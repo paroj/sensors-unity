@@ -1,0 +1,26 @@
+name: sensors-unity
+version: 16.09
+confinement: devmode # reading temperature not yet in hardware-observe interface
+grade: stable
+summary: A simple sensors GUI for the Unity Desktop
+description:  Allows monitoring the output of the `sensors` command graphically.
+apps:
+  sensors-unity:
+    command: desktop-launch $SNAP/share/sensors-unity/sensors-gui.py
+    plugs: [unity7, home, hardware-observe]
+ 
+parts:
+    sensors-unity:
+        plugin: python3
+        source: git://git.launchpad.net/sensors-unity
+        stage-packages:
+            - python3-distutils-extra
+            - python3-gi
+            - gir1.2-unity-5.0
+            - gir1.2-gtk-3.0
+            - gir1.2-pango-1.0
+            - libsensors4
+        after: [desktop-gtk3]
+        stage:
+            - -usr/share/pkgconfig # also in desktop-gtk3
+            - -usr/share/mime      # also in desktop-gtk3

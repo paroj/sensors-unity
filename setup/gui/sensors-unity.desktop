@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Sensor Monitor
+GenericName=Sensor Monitor
+Keywords=temperature;fan;
+Exec=sensors-unity
+Path=${SNAP}/share/sensors-unity/
+Icon=${SNAP}/meta/gui/icon.svg
+Terminal=false
+Categories=Utility;GTK;
