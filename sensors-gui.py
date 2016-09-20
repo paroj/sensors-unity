@@ -19,6 +19,9 @@ import locale
 DATA = "/usr/share/sensors-unity/"
 #DATA = os.path.expanduser("~/workspace/sensors-unity/")
 
+if "SNAP" in os.environ:
+    DATA = os.environ["SNAP"] + DATA[4:] # $SNAP/share/..
+
 GETTEXT_DOMAIN = "sensors-unity"
 # use locale instead of gettext, so GTK gets the change
 locale.bindtextdomain(GETTEXT_DOMAIN, DATA+"locale/")
@@ -178,6 +181,8 @@ class Controller:
     def run(self):
         if os.path.exists(self.SENSORS_CONF):
             sensors.init(self.SENSORS_CONF)
+        elif "SNAP" in os.environ:
+            sensors.init(os.environ["SNAP"]+"/etc/sensors3.conf")
         else:
             sensors.init()
         
