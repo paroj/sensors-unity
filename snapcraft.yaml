@@ -1,6 +1,6 @@
 name: sensors-unity
 version: 16.09
-confinement: devmode # reading temperature not yet in hardware-observe interface
+confinement: strict
 grade: stable
 summary: A simple sensors GUI for the Unity Desktop
 description:  Allows monitoring the output of the `sensors` command graphically.
