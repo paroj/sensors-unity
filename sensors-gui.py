@@ -194,6 +194,12 @@ class Controller:
         expanded = [self.tview.row_expanded(self.tstore.get_path(self.group[t])) for t in self.DISPLAY_TYPES]
         monitor = [e.decode("utf-8") for e in self.monitor]
         
+        config_dir = GLib.get_user_config_dir()
+
+        if not os.path.exists(config_dir):
+            # need this for SNAPs
+            os.mkdir(config_dir)
+
         json.dump({"expanded": expanded, "monitor": monitor}, open(self.CONFIG_FILE, "w"))
 
         sensors.cleanup()
