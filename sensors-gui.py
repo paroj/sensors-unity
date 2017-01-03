@@ -97,7 +97,11 @@ class Controller:
             self.monitor = self.MONITOR_NONE
             self.expanded = [True for t in self.DISPLAY_TYPES]
 
-        self.le = Unity.LauncherEntry.get_for_desktop_file("sensors-unity.desktop")
+        desktop_file_name = "sensors-unity.desktop"
+        if "SNAP" in os.environ:
+            desktop_file_name = "sensors-unity_sensors-unity.desktop"
+
+        self.le = Unity.LauncherEntry.get_for_desktop_file(desktop_file_name)
         self.le.set_property("count-visible", True)
 
         # construct treeview
