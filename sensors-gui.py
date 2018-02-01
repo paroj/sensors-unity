@@ -9,7 +9,7 @@
 import gi
 gi.require_version("Unity", "7.0")
 gi.require_version("Gtk", "3.0")
-from gi.repository import Unity, GObject, Gtk, GLib
+from gi.repository import Unity, GObject, Gtk, GLib, Gio
 
 import os.path
 from sensors import sensors
@@ -31,6 +31,7 @@ _ = locale.gettext
 UNITS = {sensors.feature.TEMP: (int, "°C"),
          sensors.feature.FAN: (int, "RPM"),
          sensors.feature.IN: (float, "V")}
+
 
 class Sensor:
     iter = None
@@ -57,6 +58,7 @@ class Sensor:
     def id(self):
         return (self.raw[0].prefix, self.raw[1].name)
 
+
 class Controller:
     SENSORS_CONF = GLib.get_user_config_dir() + "/sensors3.conf"
     CONFIG_FILE = GLib.get_user_config_dir() + "/sensors-unity.json"
@@ -74,12 +76,7 @@ class Controller:
         xml.set_translation_domain(GETTEXT_DOMAIN)
         xml.add_from_file(DATA + "window.ui")
 
-        about = xml.get_object("aboutdialog1")
-        xml.get_object("menuitem_about").connect("activate", lambda *args: about.show())
         xml.connect_signals({"hide-widget": lambda w, *args: w.hide_on_delete()})
-
-        window = xml.get_object("window1")
-        window.connect("delete-event", self.end)
 
         cfg = None
 
@@ -134,6 +131,26 @@ class Controller:
         column = Gtk.TreeViewColumn(_("monitor"), renderer, active=2, visible=3)
         self.tview.append_column(column)
 
+        self.app = Gtk.Application(application_id="net.rojtberg.sensors-gui")
+        self.app.connect("startup", self._startup, xml)
+
+    def _startup(self, app, xml):
+        # appmenu
+        app.set_app_menu(xml.get_object("app-menu"))
+
+        action = Gio.SimpleAction.new("about", None)
+        about = xml.get_object("aboutdialog1")
+        action.connect("activate", lambda *args: about.show())
+        app.add_action(action)
+
+        action = Gio.SimpleAction.new("quit", None)
+        action.connect("activate", self.end)
+        app.add_action(action)
+
+        window = xml.get_object("window1")
+        app.connect("activate", lambda *args: window.present())
+        window.connect("delete-event", self.end)
+        window.set_application(app)
         window.show()
 
     def on_toggled(self, renderer, path):
@@ -191,8 +208,9 @@ class Controller:
             sensors.init()
 
         self.initialize()
+        self.refresh_gui()  # set valid initial count
         GObject.timeout_add_seconds(1, self.refresh_gui)
-        Gtk.main()
+        self.app.run()
 
     def end(self, *a):
         expanded = [self.tview.row_expanded(self.tstore.get_path(self.group[t])) for t in self.DISPLAY_TYPES]
@@ -207,7 +225,8 @@ class Controller:
         json.dump({"expanded": expanded, "monitor": monitor}, open(self.CONFIG_FILE, "w"))
 
         sensors.cleanup()
-        Gtk.main_quit()
+        self.app.quit()
+
 
 if __name__ == '__main__':
     c = Controller()

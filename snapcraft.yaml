@@ -1,5 +1,5 @@
 name: sensors-unity
-version: 16.09
+version: 18.02
 confinement: strict
 grade: stable
 summary: A simple sensors GUI for the Unity Desktop
