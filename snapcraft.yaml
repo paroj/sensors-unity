@@ -4,11 +4,19 @@ confinement: strict
 grade: stable
 summary: A simple sensors GUI for the Unity Desktop
 description:  Allows monitoring the output of the `sensors` command graphically.
+
 apps:
   sensors-unity:
     command: desktop-launch $SNAP/share/sensors-unity/sensors-gui.py
     plugs: [unity7, home, hardware-observe]
- 
+
+slots:
+  # for GtkApplication registration
+  sensors-gui:
+    interface: dbus
+    bus: session
+    name: net.rojtberg.sensors-gui
+
 parts:
     sensors-unity:
         plugin: python3
