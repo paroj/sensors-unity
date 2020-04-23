@@ -61,7 +61,7 @@ parts:
         - libibus-1.0-5
     sensors-unity:
         plugin: python
-        source: git://git.launchpad.net/sensors-unity
+        source: https://github.com/paroj/sensors-unity.git
         stage-packages:
             - python3-distutils-extra
             - python3-gi
