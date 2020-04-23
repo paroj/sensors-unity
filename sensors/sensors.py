@@ -17,7 +17,9 @@ _libc = cdll.LoadLibrary(ctypes.util.find_library("c"))
 # see https://github.com/paroj/sensors.py/issues/1
 _libc.free.argtypes = [c_void_p]
 
-_hdl = cdll.LoadLibrary(ctypes.util.find_library("sensors"))
+# workaround for snap
+# _hdl = cdll.LoadLibrary(ctypes.util.find_library("sensors"))
+_hdl = cdll.LoadLibrary("libsensors.so.4")
 
 version = c_char_p.in_dll(_hdl, "libsensors_version").value.decode("ascii")
 
