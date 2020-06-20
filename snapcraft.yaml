@@ -1,5 +1,5 @@
 name: sensors-unity
-version: "18.02"
+version: "20.06"
 confinement: strict
 grade: stable
 summary: A simple sensors GUI for the Unity Desktop
@@ -8,22 +8,11 @@ base: core18
 
 apps:
   sensors-unity:
-    command: desktop-launch $SNAP/share/sensors-unity/sensors-gui.py
-    plugs: [unity7, home, hardware-observe]
-
-plugs:
-  gtk-3-themes:
-    interface: content
-    target: $SNAP/data-dir/themes
-    default-provider: gtk-common-themes
-  icon-themes:
-    interface: content
-    target: $SNAP/data-dir/icons
-    default-provider: gtk-common-themes
-  sound-themes:
-    interface: content
-    target: $SNAP/data-dir/sounds
-    default-provider: gtk-common-themes
+    command: sensors-gui.py
+    plugs: [unity7, hardware-observe]
+    extensions: [gnome-3-28]
+    environment:
+      PYTHONPATH: $SNAP/gnome-platform/usr/lib/python3/dist-packages
 
 slots:
   # for GtkApplication registration
@@ -33,43 +22,24 @@ slots:
     name: net.rojtberg.sensors-gui
 
 parts:
-    desktop-gtk3:
-      source: https://github.com/ubuntu/snapcraft-desktop-helpers.git
-      source-subdir: gtk
-      plugin: make
-      make-parameters: ["FLAVOR=gtk3"]
-      build-packages:
-        - build-essential
-        - libgtk-3-dev
-      stage-packages:
-        - libxkbcommon0  # XKB_CONFIG_ROOT
-        - ttf-ubuntu-font-family
-        - dmz-cursor-theme
-        - light-themes
-        - adwaita-icon-theme
-        - gnome-themes-standard
-        - shared-mime-info
-        - libgtk-3-0
-        - libgdk-pixbuf2.0-0
-        - libglib2.0-bin
-        - libgtk-3-bin
-        - unity-gtk3-module
-        - libappindicator3-1
-        - locales-all
-        - xdg-user-dirs
-        - ibus-gtk3
-        - libibus-1.0-5
     sensors-unity:
         plugin: python
-        source: https://github.com/paroj/sensors-unity.git
+        source: .
         stage-packages:
             - python3-distutils-extra
-            - python3-gi
             - gir1.2-unity-5.0
-            - gir1.2-gtk-3.0
-            - gir1.2-pango-1.0
-            - libsensors4
-        after: [desktop-gtk3]
         stage:
-            - -usr/share/pkgconfig # also in desktop-gtk3
-            - -usr/share/mime      # also in desktop-gtk3
+            # clutter pulled by distutils extra
+            - -usr/share/perl
+            - -usr/lib/*/perl
+    cleanup:
+      after:  [sensors-unity]
+      plugin: nil
+      build-snaps:
+        - core18
+        - gnome-3-28-1804
+      override-prime: |
+        set -eux
+        for snap in "core18" "gnome-3-28-1804"; do  # List all content-snaps and base snaps you're using here
+            cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" \;
+        done

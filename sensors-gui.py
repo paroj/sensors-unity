@@ -16,11 +16,11 @@ from sensors import sensors
 import json
 import locale
 
-DATA = "/usr/share/sensors-unity/"
+DATA = "/usr/bin/"
 # DATA = os.path.expanduser("~/workspace/sensors-unity/")
 
 if "SNAP" in os.environ:
-    DATA = os.environ["SNAP"] + DATA[4:]  # $SNAP/share/..
+    DATA = os.environ["SNAP"] + DATA[4:]  # $SNAP/bin/..
 
 GETTEXT_DOMAIN = "sensors-unity"
 # use locale instead of gettext, so GTK gets the change
@@ -203,7 +203,7 @@ class Controller:
         if os.path.exists(self.SENSORS_CONF):
             sensors.init(self.SENSORS_CONF)
         elif "SNAP" in os.environ:
-            sensors.init(os.environ["SNAP"] + "/etc/sensors3.conf")
+            sensors.init(os.environ["SNAP"] + "/gnome-platform/etc/sensors3.conf")
         else:
             sensors.init()
 

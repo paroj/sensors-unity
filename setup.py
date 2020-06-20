@@ -3,7 +3,7 @@
 from distutils.core import setup
 from DistUtilsExtra.command import build_i18n, build_extra
 
-DEST="share/sensors-unity/"
+DEST="bin/"
 
 class my_build_i18n(build_i18n.build_i18n):
     def run(self):

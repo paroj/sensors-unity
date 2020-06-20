@@ -67,9 +67,9 @@
     <property name="type_hint">dialog</property>
     <property name="transient_for">window1</property>
     <property name="program_name">Sensors Unity</property>
-    <property name="version">18.02</property>
+    <property name="version">20.06</property>
     <property name="comments" translatable="yes">A GUI for lm-sensors</property>
-    <property name="website">https://launchpad.net/sensors-unity</property>
+    <property name="website">https://github.com/paroj/sensors-unity</property>
     <property name="authors">Pavel Rojtberg</property>
     <property name="translator_credits" translatable="yes">translator-credits</property>
     <property name="logo_icon_name">utilities-system-monitor</property>
