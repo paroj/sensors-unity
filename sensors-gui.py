@@ -56,7 +56,7 @@ class Sensor:
         return self.raw[1].type
 
     def id(self):
-        return (self.raw[0].prefix, self.raw[1].name)
+        return (self.raw[0].prefix, str(self.raw[0].addr).encode("utf-8"), self.raw[1].name)
 
 
 class Controller:
@@ -69,7 +69,7 @@ class Controller:
     # only allow monitoring integer types as label does not work with floats
     MONITOR_TYPES = (sensors.feature.TEMP, sensors.feature.FAN)
 
-    MONITOR_NONE = (b"", b"")
+    MONITOR_NONE = (b"", b"", b"")
 
     def __init__(self):
         xml = Gtk.Builder()
