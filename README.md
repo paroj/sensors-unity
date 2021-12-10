@@ -29,4 +29,4 @@ This is useful in case you want to hide some unconnected sensors or give them mo
 
 ## Translating
 
-You can [help translating Sensors Unity to your language at weblate](https://hosted.weblate.org/projects/tea-time/sensors-unity/).
+You can [help translating Sensors Unity to your language at weblate](https://hosted.weblate.org/projects/paroj/sensors-unity/).
