@@ -22,7 +22,7 @@ _libc.fopen.restype = c_void_p
 
 # workaround for snap
 # _hdl = cdll.LoadLibrary(ctypes.util.find_library("sensors"))
-_hdl = cdll.LoadLibrary("libsensors.so.4")
+_hdl = cdll.LoadLibrary("libsensors.so.5")
 
 version = c_char_p.in_dll(_hdl, "libsensors_version").value.decode("ascii")
 

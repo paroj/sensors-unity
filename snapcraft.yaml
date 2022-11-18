@@ -1,5 +1,5 @@
 name: sensors-unity
-version: "20.06"
+version: "22.11"
 confinement: strict
 grade: stable
 summary: A simple sensors GUI for the Unity Desktop
@@ -22,6 +22,14 @@ slots:
     name: net.rojtberg.sensors-gui
 
 parts:
+    lm-sensors:
+        plugin: make
+        source: https://github.com/lm-sensors/lm-sensors.git
+        build-packages:
+          - bison
+          - flex
+          - make
+          - gcc
     sensors-unity:
         plugin: python
         source: .
