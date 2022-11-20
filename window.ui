@@ -67,7 +67,7 @@
     <property name="type_hint">dialog</property>
     <property name="transient_for">window1</property>
     <property name="program_name">Sensors Unity</property>
-    <property name="version">20.06</property>
+    <property name="version">22.11</property>
     <property name="comments" translatable="yes">A GUI for lm-sensors</property>
     <property name="website">https://github.com/paroj/sensors-unity</property>
     <property name="authors">Pavel Rojtberg</property>
