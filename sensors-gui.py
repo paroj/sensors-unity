@@ -44,7 +44,11 @@ class Sensor:
         self._fmt += unit
 
     def read(self):
-        self.val = self._pytype(sensors.get_value(self.raw[0], next(sensors.SubFeatureIterator(*self.raw)).number))
+        try:
+            self.val = self._pytype(sensors.get_value(self.raw[0], next(sensors.SubFeatureIterator(*self.raw)).number))
+        except sensors.ErrorAccessRead:
+            self.val = 0
+            self._fmt = _("N/A")
 
     def str_val(self):
         return self._fmt.format(self.val)
