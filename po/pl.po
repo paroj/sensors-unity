@@ -8,54 +8,58 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-20 02:13+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-03-27 20:38+0000\n"
+"Last-Translator: gnu-ewm <gnu.ewm@protonmail.com>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/paroj/"
+"sensors-unity/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: ../sensors-gui.py:110
 msgid "Thermal Sensors"
-msgstr ""
+msgstr "Czujniki termiczne"
 
 #: ../sensors-gui.py:110
 msgid "Fans"
-msgstr ""
+msgstr "Wentylatory"
 
 #: ../sensors-gui.py:110
 msgid "Voltages"
-msgstr ""
+msgstr "Napięcia"
 
 #: ../sensors-gui.py:117
 msgid "Sensor"
-msgstr ""
+msgstr "Czujnik"
 
 #: ../sensors-gui.py:124
 msgid "Value"
-msgstr ""
+msgstr "Wartość"
 
 #: ../sensors-gui.py:131
 msgid "monitor"
-msgstr ""
+msgstr "monitor"
 
 #: ../window.ui.h:1
 msgid "_About"
-msgstr ""
+msgstr "O _aplikacji"
 
 #: ../window.ui.h:2
 msgid "_Quit"
-msgstr ""
+msgstr "Wyjdź (_Q)"
 
 #: ../window.ui.h:3
 msgid "Sensor Monitor"
-msgstr ""
+msgstr "Monitor czujników"
 
 #: ../window.ui.h:4
 msgid "A GUI for lm-sensors"
-msgstr ""
+msgstr "Graficzny interfejs użytkownika dla lm-sensors"
 
 #: ../window.ui.h:5
 msgid "translator-credits"
-msgstr ""
+msgstr "tłumacze"
