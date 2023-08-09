@@ -8,54 +8,57 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-20 02:13+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-08-10 19:50+0000\n"
+"Last-Translator: Milan Šalka <salka.milan@googlemail.com>\n"
+"Language-Team: Slovak <https://hosted.weblate.org/projects/paroj/"
+"sensors-unity/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: ../sensors-gui.py:110
 msgid "Thermal Sensors"
-msgstr ""
+msgstr "Termálne snímače"
 
 #: ../sensors-gui.py:110
 msgid "Fans"
-msgstr ""
+msgstr "Fanúšikovia"
 
 #: ../sensors-gui.py:110
 msgid "Voltages"
-msgstr ""
+msgstr "Napätie"
 
 #: ../sensors-gui.py:117
 msgid "Sensor"
-msgstr ""
+msgstr "Senzor"
 
 #: ../sensors-gui.py:124
 msgid "Value"
-msgstr ""
+msgstr "Hodnota"
 
 #: ../sensors-gui.py:131
 msgid "monitor"
-msgstr ""
+msgstr "monitor"
 
 #: ../window.ui.h:1
 msgid "_About"
-msgstr ""
+msgstr "_O"
 
 #: ../window.ui.h:2
 msgid "_Quit"
-msgstr ""
+msgstr "_Koniec"
 
 #: ../window.ui.h:3
 msgid "Sensor Monitor"
-msgstr ""
+msgstr "Monitor snímača"
 
 #: ../window.ui.h:4
 msgid "A GUI for lm-sensors"
-msgstr ""
+msgstr "GUI pre lm-sensors"
 
 #: ../window.ui.h:5
 msgid "translator-credits"
-msgstr ""
+msgstr "prekladateľské akredity"
