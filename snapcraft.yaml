@@ -1,18 +1,18 @@
 name: sensors-unity
-version: "22.11"
+version: "24.05"
 confinement: strict
 grade: stable
 summary: A simple sensors GUI for the Unity Desktop
 description:  Allows monitoring the output of the `sensors` command graphically.
-base: core18
+base: core20
 
 apps:
   sensors-unity:
-    command: sensors-gui.py
+    command: bin/sensors-gui.py
     plugs: [unity7, hardware-observe]
-    extensions: [gnome-3-28]
+    extensions: [gnome-3-38]
     environment:
-      PYTHONPATH: $SNAP/gnome-platform/usr/lib/python3/dist-packages
+      PYTHONPATH: $SNAP/gnome-platform/usr/lib/python3/dist-packages:$SNAP/usr/lib/python3/dist-packages
 
 slots:
   # for GtkApplication registration
@@ -33,21 +33,23 @@ parts:
     sensors-unity:
         plugin: python
         source: .
-        stage-packages:
+        python-packages: ["--target", $SNAPCRAFT_PART_INSTALL, "."]
+        build-packages:
             - python3-distutils-extra
+        stage-packages:
             - gir1.2-unity-5.0
+        build-environment:
+            - SNAPCRAFT_PYTHON_VENV_ARGS: --system-site-packages
         stage:
-            # clutter pulled by distutils extra
-            - -usr/share/perl
-            - -usr/lib/*/perl
+            - -bin/python3 # workaround for gnome-3-38-2004
     cleanup:
       after:  [sensors-unity]
       plugin: nil
       build-snaps:
-        - core18
-        - gnome-3-28-1804
+        - core20
+        - gnome-3-38-2004
       override-prime: |
         set -eux
-        for snap in "core18" "gnome-3-28-1804"; do  # List all content-snaps and base snaps you're using here
+        for snap in "core20" "gnome-3-38-2004"; do  # List all content-snaps and base snaps you're using here
             cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" \;
         done
